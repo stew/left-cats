@@ -17,9 +17,7 @@ object CharacterTest extends Properties("LeftPad") {
   }
 
   property("longer") = forAll { (w: Char, s: String) =>
-    s.length > 0 ==> {
-      LeftPad[String, Char].leftPad(s)(s.length + 3, w) == w.toString * 3 + s
-    }
+    LeftPad[String, Char].leftPad(s)(s.length + 3, w) == w.toString * 3 + s
   }
 
 }
