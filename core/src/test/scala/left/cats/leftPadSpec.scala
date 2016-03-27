@@ -2,7 +2,7 @@ package left.cats
 
 import org.scalacheck._
 
-object CharacterTest extends Properties("LeftPad") {
+object LeftPadSpec extends Properties("LeftPad") {
   import Prop._
   import LeftPad._
 
