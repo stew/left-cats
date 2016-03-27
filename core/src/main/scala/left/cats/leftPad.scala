@@ -1,0 +1,44 @@
+package left.cats
+
+import cats.{Alternative,Foldable}
+import simulacrum.typeclass
+
+abstract class LeftPad[F, A] {
+  /**
+   * Pad an F on the left with As as needed to return an F of at least
+   * length `length`.
+   * 
+   * Inspired by: https://www.npmjs.com/package/left-pad
+   */
+  def leftPad(a: F)(length: Int, pad: A): F
+}
+
+object LeftPad extends LeftPadInstances {
+  def apply[F, A](implicit L: LeftPad[F, A]): LeftPad[F,A] = L
+}
+
+sealed abstract class LeftPadInstances extends LeftPadInstances1 {
+  /**
+   * The reason for the season
+   */
+  implicit val stringLeftPad: LeftPad[String, Char] = new LeftPad[String, Char] {
+    def leftPad(a: String)(length: Int, pad: Char): String =
+      (" " * (length - a.length)) + a
+  }
+}
+
+sealed abstract class LeftPadInstances1 {
+  implicit def fromAlternative[F[_], A](implicit Fa: Alternative[F], Fo: Foldable[F]): LeftPad[F[A],A] = new LeftPad[F[A], A] {
+    override def leftPad(fa: F[A])(padTo: Int, pad: A): F[A] = {
+
+      def length(fa: F[A]): Int =
+        Fo.foldLeft(fa, 0)((i,_) => i+1)
+
+      @scala.annotation.tailrec def go(n: Int, acc: F[A]): F[A] =
+        if(n <= 0) acc
+        else go(n-1,Fa.combineK(Fa.pure(pad), acc))
+
+      go(padTo - length(fa), fa)
+    }
+  }
+}
