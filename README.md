@@ -14,4 +14,5 @@ example usage:
 
     scala> LeftPad[String,Char].leftPad("asdf")(10, ' ') 
     res0: String = "      asdf"
-    
+
+Of course, it builds in scalaJS as well.
