@@ -23,7 +23,7 @@ sealed abstract class LeftPadInstances extends LeftPadInstances1 {
    */
   implicit val stringLeftPad: LeftPad[String, Char] = new LeftPad[String, Char] {
     def leftPad(a: String)(length: Int, pad: Char): String =
-      (" " * (length - a.length)) + a
+      (pad.toString * (length - a.length)) + a
   }
 }
 
