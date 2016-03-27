@@ -11,5 +11,12 @@ object LeftPadSpec extends Properties("left-pad") {
   property("string") = forAll{(a: String, c: Char, n: Int) => 
     LeftPad[String,Char].leftPad(a)(n,c) == (if(n < a.length) a else (a.reverse ++ (c.toString * n)).take(n).reverse)
   }
+
+  import cats._
+  import cats.implicits._
+
+  property("alternative foldable") = forAll{(a: Vector[Char], c: Char, n: Int) =>
+      LeftPad[Vector[Char],Char].leftPad(a)(n,c).foldMap(_.toString) == LeftPad[String,Char].leftPad(a.mkString(""))(n,c)
+  }
 }
 
