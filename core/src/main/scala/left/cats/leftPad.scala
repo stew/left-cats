@@ -1,7 +1,6 @@
 package left.cats
 
 import cats.{Alternative,Foldable}
-import simulacrum.typeclass
 
 abstract class LeftPad[F, A] {
   /**
