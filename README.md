@@ -12,9 +12,18 @@ as long as you have implicit cats.Foldable and cats.Alternative instances.
 
 example usage:
 
-    scala> import left.cats._, LeftPad._
+    scala> import left.cats._
+    import left.cats._
 
-    scala> LeftPad[String,Char].leftPad("asdf")(10, ' ') 
-    res0: String = "      asdf"
+    scala> LeftPad[String,Char].leftPad("asdf")(10, '-')
+    res0: String = ------asdf
+
+with syntax:
+
+    scala> import LeftPad.ops._
+    import LeftPad.ops._
+
+    scala> "asdf".leftPad(10, '-')
+    res1: String = ------asdf
 
 Of course, it builds in scalaJS as well.

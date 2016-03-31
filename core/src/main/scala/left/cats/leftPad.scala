@@ -14,6 +14,24 @@ abstract class LeftPad[F, A] {
 
 object LeftPad extends LeftPadInstances {
   def apply[F, A](implicit L: LeftPad[F, A]): LeftPad[F,A] = L
+
+  // Simulacrum doesn't support MPTCs yet, but if it did it would look like:
+
+  trait Ops[F, A] {
+    def typeClassInstance: LeftPad[F, A]
+    def self: F
+    def leftPad(length: Int, pad: A): F = typeClassInstance.leftPad(self)(length, pad)
+  }
+
+  trait ToLeftPadOps {
+    implicit def toLeftPadOps[F, A](target: F)(implicit tc: LeftPad[F, A]): Ops[F, A] = new Ops[F, A] {
+      val self = target
+      val typeClassInstance = tc
+    }
+  }
+
+  object ops extends ToLeftPadOps
+
 }
 
 sealed abstract class LeftPadInstances extends LeftPadInstances1 {
