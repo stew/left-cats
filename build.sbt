@@ -20,8 +20,8 @@ publishMavenStyle := true
 scmInfo := Some(ScmInfo(url("https://github.com/stew/left-cats"),
   "https://github.com/stew/left-cats.git"))
 
-lazy val tagName = Def.setting{
- s"v${if (releaseUseGlobalVersion.value) (version in ThisBuild).value else version.value}"
+lazy val tagName = Def.setting {
+  s"v${if (releaseUseGlobalVersion.value) (version in ThisBuild).value else version.value}"
 }
 
 lazy val publishSettings = Seq(
