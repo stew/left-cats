@@ -2,8 +2,7 @@ name := "left-cats-core"
 
 libraryDependencies ++= Seq(
   "org.typelevel"        %%% "cats-core"  % "0.4.1",
-  "org.scalacheck"        %% "scalacheck" % "1.12.+" % "test",
-  compilerPlugin("org.scalamacros" %% "paradise" % "2.1.0-M5" cross CrossVersion.full)
+  "org.scalacheck"        %% "scalacheck" % "1.12.+" % "test"
 )
 
 scalacOptions := Seq(
