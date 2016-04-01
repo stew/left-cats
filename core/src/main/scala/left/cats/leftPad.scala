@@ -45,7 +45,7 @@ sealed abstract class LeftPadInstances extends LeftPadInstances1 {
 }
 
 sealed abstract class LeftPadInstances1 {
-  implicit def fromAlternative[F[_], A](implicit Fa: Alternative[F], Fo: Foldable[F]): LeftPad[F[A],A] = new LeftPad[F[A], A] {
+  implicit def fromAlternative[F[_], A](implicit Fa: Alternative[F], Fo: Foldable[F]): LeftPad[F[A], A] = new LeftPad[F[A], A] {
     override def leftPad(fa: F[A])(padTo: Int, pad: A): F[A] = {
 
       def length(fa: F[A]): Int =
@@ -53,7 +53,7 @@ sealed abstract class LeftPadInstances1 {
 
       @scala.annotation.tailrec def go(n: Int, acc: F[A]): F[A] =
         if(n <= 0) acc
-        else go(n-1,Fa.combineK(Fa.pure(pad), acc))
+        else go(n-1, Fa.combineK(Fa.pure(pad), acc))
 
       go(padTo - length(fa), fa)
     }
