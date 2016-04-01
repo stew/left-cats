@@ -30,5 +30,15 @@ object LeftPadSpec extends Properties("left-pad") {
   property("longer") = forAll { (w: Char, s: String) =>
     LeftPad[String, Char].leftPad(s)(s.length + 3, w) == w.toString * 3 + s
   }
-}
 
+  property("syntax consistency 1") = forAll { (w: Char, s: String, n: Int) =>
+    import LeftPad.ops._
+    LeftPad[String, Char].leftPad(s)(n, w) == s.leftPad(n, w)
+  }
+
+  property("syntax consistency 2") = forAll { (pad: Int, ns: List[Int], n: Int) =>
+    import LeftPad.ops._
+    LeftPad[List[Int], Int].leftPad(ns)(n, pad) == ns.leftPad(n, pad)
+  }
+
+}
