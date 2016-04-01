@@ -14,7 +14,7 @@ Example usage to left-pad a `String` with spaces:
 ```scala
 scala> import left.cats._
 
-scala> LeftPad[String,Char].leftPad("asdf")(10, '-')
+scala> LeftPad[String, Char].leftPad("asdf")(10, '-')
 res0: String = ------asdf
 ```
 
