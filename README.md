@@ -3,6 +3,7 @@ left cats
 
 [![Join the chat at https://gitter.im/stew/left-cats](https://badges.gitter.im/stew/left-cats.svg)](https://gitter.im/stew/left-cats?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/stew/left-cats.svg?branch=master)](https://travis-ci.org/stew/left-cats)
+[![codecov.io](http://codecov.io/github/stew/left-cats/coverage.svg?branch=master)](http://codecov.io/github/stew/left-cats?branch=master)
 
 A scala implementation of the [left-pad javascript library](https://www.npmjs.com/package/left-pad)
 
