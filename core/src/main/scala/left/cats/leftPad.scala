@@ -6,7 +6,11 @@ abstract class LeftPad[F, A] {
   /**
    * Pad an F on the left with As as needed to return an F of at least
    * length `length`.
-   * 
+   *
+   * {{{
+   * scala> LeftPad[String, Char].leftPad("asdf")(10, '-')
+   * res0: String = ------asdf
+   * }}}
    * Inspired by: https://www.npmjs.com/package/left-pad
    */
   def leftPad(a: F)(length: Int, pad: A): F
