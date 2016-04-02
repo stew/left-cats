@@ -19,6 +19,10 @@ object LeftPadSpec extends Properties("left-pad") {
     LeftPad[Vector[Char],Char].leftPad(a)(n,c).foldMap(_.toString) == LeftPad[String,Char].leftPad(a.mkString(""))(n,c)
   }
 
+  property("alternative foldable: List[Int]") = forAll { (a: List[Int], i: Int, n: Int) =>
+    LeftPad[List[Int], Int].leftPad(a)(n, i) == (if (n <= a.length) a else Stream.continually(i).take(n - a.length).toList ++ a)
+  }
+
   property("zero") = forAll { (w: Char, s: String) =>
     LeftPad[String, Char].leftPad(s)(s.length, w) == s
   }
