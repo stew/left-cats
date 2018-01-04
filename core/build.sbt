@@ -1,8 +1,8 @@
 name := "left-cats-core"
 
 libraryDependencies ++= Seq(
-  "org.typelevel"        %%% "cats-core"  % "0.4.1",
-  "org.scalacheck"        %% "scalacheck" % "1.12.+" % "test"
+  "org.typelevel"        %%% "cats-core"  % "1.0.1",
+  "org.scalacheck"        %% "scalacheck" % "1.13.+" % "test"
 )
 
 scalacOptions := Seq(
@@ -12,7 +12,6 @@ scalacOptions := Seq(
   "-language:postfixOps",
   "-language:higherKinds",
   "-language:implicitConversions",
-  "-target:jvm-1.7",
   "-unchecked",
   "-Xcheckinit",
   "-Xfuture",
